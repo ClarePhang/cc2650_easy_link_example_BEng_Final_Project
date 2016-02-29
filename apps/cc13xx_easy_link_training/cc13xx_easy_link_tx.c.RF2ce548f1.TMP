@@ -1,0 +1,961 @@
+//******************************************************************************
+//! @file       cc13xx_easy_link_tx.c
+//! @brief      
+//!
+//! Revised     $Date:
+//! Revision    $Revision:
+//
+//  Copyright (C) 2013 Texas Instruments Incorporated - http://www.ti.com/
+//
+//
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions
+//  are met:
+//
+//    Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+//
+//    Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+//
+//    Neither the name of Texas Instruments Incorporated nor the names of
+//    its contributors may be used to endorse or promote products derived
+//    from this software without specific prior written permission.
+//
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+//  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+//  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+//  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+//  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+//  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+//  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+//  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+//  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//*****************************************************************************/
+
+
+/*******************************************************************************
+* INCLUDES
+*/
+#include "stdlib.h"
+
+// Synth calibration fix
+#include "cc13xx_init_lib.h"
+
+// BSP
+//#include "bsp.h"
+//#include "bsp_key.h"
+//#include "bsp_led.h"
+
+// LCD
+//#include "lcd_dogm128_6.h"
+
+// Chip specific
+#include "prcm.h"
+#include "cpu.h"
+#include "interrupt.h"
+#include "pwr_ctrl.h"
+#include "rfc.h"
+
+// RF Core
+#include "cc26xx_pg2/common_cmd_pg2.h"
+//#include "cc26xx_pg2/prop_cmd_pg2.h"
+//#include "cc26xx_pg2/prop_mailbox.h"
+#include "cc26xx_pg2/ieee_cmd.h"
+#include "cc26xx_pg2/ieee_mailbox.h"
+#include "hw_rfc_dbell.h"
+#include "hw_rfc_pwr.h"
+#include "radio_par.h"
+
+// RF Core Patches
+#define SYS_PATCH_TYPE static uint32_t
+#include "phy_prop_genfsk\pg1\cc13xx\apply_patch.h"
+//#include "phy_ieee802154\pg1\cc26xx\apply_patch.h"
+//#include "phy_ble\pg1\cc26xx\apply_patch.h"
+
+#include "phy_ieee802154\pg1\cc26xx\apply_zigbee_mce_patch.h"
+#include "phy_ieee802154\pg1\cc26xx\apply_zigbee_rfe_patch.h"
+
+//#include "phy_ble\pg1\cc26xx\apply_ble_mce_patch.h"
+//#include "phy_ble\pg1\cc26xx\apply_ble_rfe_patch.h"
+
+#include "phy_prop_genfsk\pg1\cc13xx\apply_genfsk_rfe_patch.h"
+#include "phy_prop_genfsk\pg1\cc13xx\apply_genfsk_mce_patch.h"
+
+//Backdoor
+//#include "backdoor.h"
+#include "gpio.h"
+
+/*
+#define EB_SW_ONE_PIN           GPIO_PIN_13
+#define EB_SW_ONE_IOID          IOID_13
+#define EB_SW_TWO_PIN           GPIO_PIN_14
+#define EB_SW_TWO_IOID          IOID_14
+*/
+
+// Pin/IO to setup as backdoor.
+/*
+#define EB_BACKDOOR_PIN         EB_SW_TWO_PIN   
+#define EB_BACKDOOR_IOID        EB_SW_TWO_IOID
+*/
+
+/*******************************************************************************
+* LOCAL FUNCTION PROTOTYPES
+*/
+static void appError(void);
+//static void appDisplayWelcomeScreen(void);
+//static void appUpdateTxScreen(uint32_t packetSent);
+static void appDcdcOn(uint8_t on);
+static void applyPatches(void);
+//void Init_Backdoor(void);
+
+
+/*******************************************************************************
+* DEFINES
+*/
+#define NUMBER_OF_PACKETS       100
+#define PAYLOAD_LENGTH          24
+
+
+/****** STEP 0 - Application Initialization *********************************
+ *
+ * (Outside main function)
+ *
+ * 1. Declare the RF specific variables.
+ *      - These are the variables needed for interracting with the RF Core.
+ *
+ *      Note:
+ *        - All RF Core command structures have to be 4 byte aligned.
+ *
+ * 2. Declare application specific variables. 
+ *      - These are used to control the flow of the EasyLink application. 
+ *
+ * (Inside main function)
+ *
+ * 3. Initialize the board, buttons, SPI, LCD and print to LCD.
+ * 4. Configure DCDC, power down settings and enable interrupt
+ ***************************************************************************/
+
+/* 0.1. Declare the RF specific variables. */
+/* 0.1.1. All RF Core command structures have to be 4 byte aligned */
+//#pragma data_alignment = 4
+//static rfc_CMD_PROP_RADIO_SETUP_t propSetupCommand;
+
+#pragma data_alignment = 4
+static rfc_CMD_TX_t txCommand;
+#pragma data_alignment = 4
+static rfc_CMD_RADIO_SETUP_t radioSetupCommand;
+#pragma data_alignment = 4
+static rfc_CMD_TX_TEST_t txTestCommand;
+#pragma data_alignment = 4
+static rfc_CMD_FS_t fsCommand;
+#pragma data_alignment = 4
+static rfc_CMD_WRITE_RFREG_t writeRfRegCommand;
+#pragma data_alignment = 4
+static rfc_CMD_READ_FS_CAL_t fsReadCalCommand;
+#pragma data_alignment = 4
+static rfc_CMD_IEEE_TX_t txIeeeCommand;
+
+//#pragma data_alignment = 4
+//static rfc_CMD_READ_ADI1REG_t readAdi1RegCommand;
+//#pragma data_alignment = 4
+//static rfc_CMD_READ_ADI0REG_t readAdi0RegCommand;
+//#pragma data_alignment = 4
+//static rfc_CMD_WRITE_ADI1REG_t writeAdi1RegCommand;
+
+/* 0.1.2. Non-aligned RF specific variables */
+//static uint32_t propOverridesArray[32];
+//static uint32_t* propOverrides = propOverridesArray;
+static uint8_t packet[PAYLOAD_LENGTH];
+//static uint32_t scaledFreq;
+//static uint16_t realFrequency;
+//static uint16_t realFractFreq;
+
+/* 0.2. Declare application specific variables. */
+static uint16_t seqNumber;
+static uint32_t packetSent;
+static uint32_t packetCounter;
+
+
+/*******************************************************************************
+* Messy way of including the Init_Backdoor() function
+* It initializes the GPIO pins and their interrupts for the backdoor routine
+*******************************************************************************/
+/*
+void Init_Backdoor(void)
+{
+  // Initalizes a GPIO pin to function as backdoor.
+  // Use to allow the debugger access to the chip to erase any faulty code.
+  // ----------------------------------------------------------------------  
+  
+  //Turn on GPIO, and wait until on.
+  PRCMPowerDomainOn(PRCM_DOMAIN_PERIPH);
+  while(PRCMPowerDomainStatus(PRCM_DOMAIN_PERIPH) != PRCM_DOMAIN_POWER_ON) {}
+  
+  // Configure the backdoor for polled mode.
+  // Uses (pull-down) CC26EB switch SW2.
+  // ---------------------------------------
+  BackdoorInit(EB_BACKDOOR_PIN, 0, BACKDOOR_POLLED);
+}
+*/
+
+/*******************************************************************************
+* @brief    EasyLink main function (TX)
+*
+* @return   None
+*******************************************************************************/
+main(void)
+{ 
+  int status_ieee_cmd = 0;
+  int status_ieee_cmdsta = 0;
+  //int fs_status_cmd = 0;
+  
+  //LH: With PG 2.0 this should not be needed, but it is here just in case
+  //Turns out, it takes up a lot of RAM, so it had to go
+  //Init_Backdoor();
+  //BackdoorOpen();
+    
+  /****** STEP 1 - RF Core Prerequisites **************************************
+   * 1. Switch to HF crystal
+   * 2. Enable RF Core power
+   * 3. Enable RF Core clocks
+   * 4. Send a Ping command to RF Core
+   * 5. Wait for Ping response
+   ***************************************************************************/
+  
+  /* 1.1. Switch to external high-speed XTAL. */
+  /* Enable OSC DIG interface to change clock sources */
+  OSCInterfaceEnable();
+  /* Check to not enable XOSC if already enabled */
+  if(OSCClockSourceGet(OSC_SRC_CLK_HF) != OSC_XOSC_HF)
+  {
+    /* Request to switch to the crystal to enable radio operation. */
+    OSCClockSourceSet(OSC_SRC_CLK_LF | OSC_SRC_CLK_MF | OSC_SRC_CLK_HF,
+                      OSC_XOSC_HF);
+    /* Switch the HF source to XTAL - Done via ROM API*/
+    OSCHfSourceSwitch();
+  }
+  /* Disable OSC DIG interface */
+  OSCInterfaceDisable();
+  
+  /* 1.2. Enable RF Core power domain and wait until it's on */
+  PRCMPowerDomainOn(PRCM_DOMAIN_RFCORE);
+  while(PRCMPowerDomainStatus(PRCM_DOMAIN_RFCORE) != PRCM_DOMAIN_POWER_ON);
+
+  /* 1.3. Enable clocks inside RF Core */
+  RFCClockEnable();
+    
+  /* Wait until done (because this is a direct command) */
+  /*
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();
+  */
+  //for (int i = 0; i<128; i++)
+  //  status_pwmclken |= HWREG(RFC_PWR_NONBUF_BASE + RFC_PWR_O_PWMCLKEN);
+  
+  //LH: still not entirely sure why not all of them enable after the call
+  //while (HWREG(RFC_PWR_NONBUF_BASE + RFC_PWR_O_PWMCLKEN) != 0x7FF);
+  //while (HWREG(RFC_PWR_NONBUF_BASE + RFC_PWR_O_PWMCLKEN) != 0x487);
+  while (HWREG(RFC_PWR_NONBUF_BASE + RFC_PWR_O_PWMCLKEN) != 0x007);
+  
+  
+  /* 1.4. Ping RF Core */
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = CMDR_DIR_CMD(CMD_PING);
+  
+  /* 1.5. Wait for Ping done */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();  
+  
+  
+  
+  /****** STEP 2 - Setup radio ************************************************
+   * 1. Patch RF Core with latest patches
+   * 2. Create CMD_PROP_RADIO_SETUP command
+   *
+   *      Parameter configuration:
+   *        - Symbol Rate = rateWord*fXOSC)/(preScale*2^20)
+   *        - Deviation is written as: Deviation [kHz] * (4 * synthDiv/2)
+   *        - Preamble modes:
+   *          - 00: Send 0 as the first preamble bit
+   *          - 01: Send 1 as the first preamble bit
+   *          - 10: Send same first bit in preamble and sync word
+   *          - 11: Send different first bit in preamble and sync word
+   *        - Bit reversal modes:
+   *          - 0: Use positive deviation for 1
+   *          - 1: Use positive deviation for 0
+   *        - MSB first modes:
+   *          - 0: Least significant bit transmitted first
+   *          - 1: Most significant bit transmitted first
+   *        - Whitening modes:
+   *          - 00: No whitening
+   *          - 01: CC1101/CC2500 compatible whitening
+   *          - 10: PN9 whitening without byte reversal
+   *          - 11: Reserved
+   *
+   *       Overrides:
+   *         - Low-level overrides is used in PG1 to indicate that we want to run the 
+   *           radio from patch RAM and that we want to program the freq. synth. from
+   *           the CM3, instead of CM0.
+   *
+   * 3. Send CMD_PROP_RADIO_SETUP command
+   * 4. Wait until command is done executing
+   ***************************************************************************/
+  
+  /* 2.1. Patch the RF Core */
+  //PG 2.0 Turns out, they are still needed
+  applyPatches();
+    
+  /* 2.2.1 Create CMD_PROP_RADIO_SETUP command */
+  /* Command header configuration */
+  radioSetupCommand.commandNo                = CMD_RADIO_SETUP;
+  radioSetupCommand.status                   = IDLE;
+  radioSetupCommand.pNextOp                  = NULL;
+  radioSetupCommand.startTime                = 0;
+  radioSetupCommand.startTrigger.triggerType = TRIG_NOW;
+  radioSetupCommand.condition.rule           = COND_NEVER;
+  
+  /* Command specific configuration */
+  //radioSetupCommand.mode                     = 0x00;                //BLE
+  radioSetupCommand.mode                     = 0x01;                //IEEE
+  //radioSetupCommand.mode                     = 0x02;                //2Mbps GFSK
+  //Also known as IoDivider
+  radioSetupCommand.__dummy0                 = 2;                   //2 or 0 for 2.4GHz devices                    // 5 bytes preamble
+  
+  //LH: The real PG2 settings start here
+  //radioSetupCommand.config.frontEndMode      = 0;        //Differential Mode
+  radioSetupCommand.config.frontEndMode      = 0x01;       //Single-ended mode RFP
+  //radioSetupCommand.config.frontEndMode      = 0x02;     //Single-ended mode RFN
+  //this previously caused problems (caused an ERROR_PAR)
+  radioSetupCommand.config.biasMode          = 1;          //Internal Bias
+  //LH: Manual says, that the default, FCFG1 settings will be used, if bNoAdi0Setup and Trim are both 0
+  radioSetupCommand.config.bNoAdi0Setup      = 0;
+  radioSetupCommand.config.bNoAdi0Trim       = 0;
+  radioSetupCommand.config.bNoAdi0Ovr        = 0; //LH: No overrides set, so whether or not this is on, it shouldn't matter.
+  //LH: Same as with ADI0
+  radioSetupCommand.config.bNoAdi1Setup      = 0;
+  radioSetupCommand.config.bNoAdi1Trim       = 0;
+  radioSetupCommand.config.bNoAdi1Ovr        = 0;
+  radioSetupCommand.config.bNoFsPowerUp      = 0;
+  //Here would go the Boost command, which is not relevant for diff.mode
+  //LH: With hese last 3-4 commands I am not sure what I am setting
+  radioSetupCommand.txPower.IB               = 10;
+  radioSetupCommand.txPower.GC               = 0;
+  radioSetupCommand.txPower.tempCoeff        = 0x20; //this should set the boost bit to 1, but not the temp. compensation?
+  
+  /* 2.2.2 Create low-level overrides and add them to the setup command */
+  
+  //LH: these may or may not be causing problems?
+  //*propOverrides++ = MCE_RFE_OVERRIDE(1, 0, 0, 1, 0, 0); // Run modem patches
+  //*propOverrides++ =                                     // (PG1 only) Control freq. synth. from CM3
+  //  SW_REG_OVERRIDE(synthPar, config, ((1 << 7) | 1));
+  //LH:the o/p power override is missing? Not sure if it is/will be needed
+  //*propOverrides++ = END_OVERRIDE;
+  //propSetupCommand.pRegOverride = propOverridesArray;
+ 
+  /* 2.3. Send CMD_PROP_RADIO_SETUP command to RF Core */
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&radioSetupCommand;
+  
+  /* 2.4. Wait until command finished executing */
+  /* 2.4.1 First wait until received, parsed and running on RF Core */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+  {
+    /*
+    for(int j = 0; j<10 ; j++)
+    {
+      status_prop_cmdsta |= (HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA));
+    }
+    appError();  */
+  }
+  
+  /* 2.4.2 Wait until command is done executing */
+  while( (radioSetupCommand.status & 0x0F00) != DONE_OK ); 
+  
+  /****** STEP 3 - Set frequency **********************************************
+   * 1. Create CMD_FS command
+   * 2. Send CMD_FS command
+   * 3. Wait until command is done executing
+   * 4. (PG1 only) Configure freq. synth. from CM3
+   ***************************************************************************/
+  
+  /* 3.1.1 Create CMD_FS command */
+  /* Command header configuration */
+  fsCommand.commandNo                   = CMD_FS;
+  fsCommand.status                      = IDLE;
+  fsCommand.pNextOp                     = NULL;
+  fsCommand.startTime                   = 0;
+  fsCommand.startTrigger.triggerType    = TRIG_NOW;
+  fsCommand.condition.rule              = COND_NEVER;
+  
+  /* Command specific configuration */
+  fsCommand.frequency                   = 2405;  // Whole frequency setting
+  fsCommand.fractFreq                   = 0;//(uint16_t) (0x1450);    // Fractional frequency setting
+  //PG 1.0; PG 2.0 has the divider setting in CMD_RADIO_SETUP and CMD_PROP_RADIO_SETUP_DIV, but the latter is only relevant for CC13xx
+  //fsCommand.synthConf.divider           = 0;    // 0 for CC26xx, all else for CC13xx; Divider depends on frequency band
+  fsCommand.synthConf.bTxMode           = 1;    // Set freq. synth. in TX mode
+  
+  //LH: The manual says this field is used for CC13xx devices
+  fsCommand.synthConf.refFreq           = 0;    // Set frequency reference for Synth
+  //fsCommand.synthConf.refFreq           = 0x07; // Doesn't seem to affect o/p and spurious at all
+  
+  fsCommand.calibConf.bOverrideCalib    = 0;    // Configure no form of calibration
+  fsCommand.calibConf.bSkipTdcCalib     = 0;    // (Done in CM3 in PG1)
+  fsCommand.calibConf.bSkipCoarseCalib  = 0;
+  fsCommand.calibConf.bSkipMidCalib     = 0;
+
+  //LH: At default settings, the following 3 fields are ignored.
+  //When bOverrideCalib and bSkip...Calib are set to 1, they are used.
+  
+  //Unless coarse precal is 0x07 (assuming it enables sections of the synth)
+  //the command returns an ERROR_SYNTH_PROG;
+  fsCommand.calibConf.coarsePrecal      = 0x07;
+  fsCommand.midPrecal                   = 0x1C;
+  fsCommand.ktPrecal                    = 0x13;
+  fsCommand.tdcPrecal                   = 0x0CF6;
+  
+  /* 3.1.2 (PG1 only) Rescale the frequency based on divider */
+  //realFrequency = fsCommand.frequency;
+  //realFractFreq = fsCommand.fractFreq;
+  //scaledFreq = (((fsCommand.frequency << 16) | fsCommand.fractFreq) *2/fsCommand.synthConf.divider);
+  //fsCommand.frequency = (scaledFreq >> 16);
+  //fsCommand.fractFreq = (scaledFreq & 0xFFFF);
+  
+  
+  /* 3.2. Send CMD_FS command to RF Core */
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&fsCommand;
+  
+  /* 3.3. Wait until command finished executing */
+  /* 3.3.1. First wait until received, parsed and running on RF Core */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();  
+  
+  /*
+  for (int i=0;i<128;i++) {
+    fs_status_cmd |= (fsCommand.status & 0x0FFF);
+  }
+  */
+  
+  /* 3.3.2. Wait until command is done executing */
+  while( (fsCommand.status & 0x0F00) != DONE_OK );
+  
+  /* 3.4. (PG1 only) Configure freq. synth. from CM3 */
+  /*
+  InitLib_startAndCalibrateSynth(((realFrequency << 16) | (realFractFreq)),
+                                 //fsCommand.synthConf.divider,
+                                 0,
+                                 InitLibRadioMode_GenFsk,
+                                 //InitLibRadioMode_CW,
+                                 InitLibSynthMode_TX,
+                                 24);
+  */
+  
+  //**************************************************************************
+  //LH: An experiment in writing to the REG
+  //int adi1_write_cmdsta =0;
+  //int adi1_write_value = 0;
+  
+  /*
+  writeAdi1RegCommand.commandNo          = CMD_WRITE_ADI1REG;
+  writeAdi1RegCommand.adiAddr.bHalfSize  = 0;
+  writeAdi1RegCommand.adiAddr.address    = 0x08;
+  writeAdi1RegCommand.adiValue           = 0x02; //Manually enable the XOSC (?)
+  */
+  
+  //HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&writeAdi1RegCommand;
+  
+  /* Wait until done (because this is a immediate command) */
+  //while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  
+  //Read returned state, if it is not CMDSTA_Done
+  //if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done ){
+  //  for (int i=0;i<128;i++) {
+  //   adi1_write_cmdsta |= HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA);
+  //  }
+  //LH: Due to the read being stored in CMDSTA as well as ADI1_CMD_value
+  //appError();
+  //} 
+  
+  
+  
+  //LH: ADI 0 and ADI 1 Register reading commands, to analyze
+  //different settings w/ and w/o freq. synth fix function
+
+  /*
+  int adi1_cmdsta =0;
+  int adi1_value = 0;
+  
+  
+  readAdi1RegCommand.commandNo          = CMD_READ_ADI1REG;
+  readAdi1RegCommand.adiAddr.bHalfSize  = 0;
+  readAdi1RegCommand.adiAddr.address    = 0x08;
+  
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&readAdi1RegCommand;
+  
+  // Wait until done (because this is a immediate command)
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  
+  //Read returned state, if it is not CMDSTA_Done
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done ){
+    for (int i=0;i<128;i++) {
+     adi1_cmdsta |= HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA);
+    }
+  //LH: Due to the read being stored in CMDSTA as well as ADI1_CMD_value
+  //appError();
+  } 
+    
+  //read the rest of the relevant ADI1 settings
+  for (int i=0;i<128;i++) {
+    adi1_value |= (readAdi1RegCommand.adiValue & 0xFFFF);
+   }
+  */
+  
+  /****** STEP 4 - TX *********************************************************
+   * 1. Create CMD_PROP_TX command
+   * (Wait for button press)
+   * 2. Create packet (with increasing sequence number and random content)
+   * 3. Send CMD_PROP_TX command
+   * 4. Wait until command is done executing 
+   * (Go to step 3. until 1000 packets sent)
+   ***************************************************************************/
+
+  /* 4.1. Create CMP_PROP_TX command */
+  /* Command header configuration */
+  /*
+  txCommand.commandNo                = CMD_PROP_TX;
+  txCommand.status                   = IDLE;
+  txCommand.pNextOp                  = NULL;
+  txCommand.startTime                = 0;
+  txCommand.startTrigger.triggerType = TRIG_NOW;
+  txCommand.condition.rule           = COND_NEVER;
+  */
+  
+  /* Command specific configuration */
+  /*
+  txCommand.pktConf.bFsOff           = 0;               // Keep frequency synth on after TX done
+  txCommand.pktConf.bUseCrc          = 1;               // Use CRC
+  txCommand.pktConf.bVarLen          = 1;               // Send length as first byte
+  txCommand.pktLen                   = PAYLOAD_LENGTH;  // Payload length (address + payload)
+  txCommand.syncWord                 = 0x930B51DE;      // Sync word to send
+  txCommand.pPkt                     = packet;          // Pointer to payload
+  */
+  
+  
+  
+  
+  
+  /*******************************************************
+  *
+  * Reading FS Calibration state - after sending FS_CMD
+  *
+  *******************************************************/
+
+  //Command for reading status of frequency synthesizer; Used for debugging
+  fsReadCalCommand.commandNo             = CMD_READ_FS_CAL;
+  
+  /*
+  int fs_status_cmdsta = 0;
+  int fs_status_cal = 0;
+  int fs_status_coarseCal = 0;
+  int fs_status_midCal = 0;
+  int fs_status_ktCal = 0;
+  int fs_status_tdcCal = 0;
+  */
+  
+  //write CMD_READ_FS_CAL and then read status/output; it's an immediate command
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&fsReadCalCommand;
+  
+  /* Wait until done (because this is a immediate command) */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  
+  //read CMDSTA, in case it returns that the FS is disabled
+  //0x085 is returned still => means that the FS is either OFF or "under calibration"
+  //Taking into account, that that is the status before sending CMD_FS,
+  //chances are it's just off.
+  
+  //CMDSTA return stays at 0x085 even with the second set of patches
+  //the return might be misleading?
+  /*
+  for (int i=0;i<128;i++) {
+    fs_status_cmdsta |= HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA);
+  }
+  */
+  
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();
+    
+    
+  //read the rest of the relevant FS settings; In this case they should all be 0 as they are not set up yet
+  /*
+  for (int i=0;i<128;i++) {
+    fs_status_cal |= (fsReadCalCommand.coarseCal & 0xFFFF);
+    fs_status_coarseCal |= fsReadCalCommand.coarseCal;
+    fs_status_midCal |= fsReadCalCommand.midCal;
+    fs_status_ktCal |= fsReadCalCommand.ktCal;
+    fs_status_tdcCal |= fsReadCalCommand.tdcCal;
+  }
+  */
+    
+  //LH: Optional test-command used for transmitting CW and PN9
+  /****************************************************************************
+  *     TX TEST COMMAND
+  ****************************************************************************/
+  
+  /* Command header configuration */
+  /*
+  txTestCommand.commandNo                = CMD_TX_TEST;
+  txTestCommand.status                   = IDLE;
+  txTestCommand.pNextOp                  = NULL;
+  txTestCommand.startTime                = 0;
+  txTestCommand.startTrigger.triggerType = TRIG_NOW;
+  txTestCommand.condition.rule           = COND_NEVER;
+  */
+  
+  /* Command specific configuration */
+  //LH: CW or PN9 setting
+  //However, for PG 1.0, the FS fix function needs to be altered as well.
+  //For PG 2.0 the CMD should be enough.
+  /*
+  txTestCommand.config.bUseCw            = 0;               // Send an unmodulated CW
+  txTestCommand.config.bFsOff            = 0;               // Turn FS off after execution
+  txTestCommand.config.whitenMode        = 3;               // Disable Data Whitening
+  txTestCommand.txWord                   = 0xAAAA;          // TxWord to be transmitted after Sync
+  
+  txTestCommand.endTrigger.triggerType   = TRIG_NEVER;      // Transmit CW indefinitely
+  txTestCommand.syncWord                 = 0x930B51DE;      // Sync word to send                                   
+  //txTestCommand.syncWord                 = 0xFDFDFDFD;
+  */
+  
+  /****************************************************************************
+  *     IEEE TX COMMAND
+  ****************************************************************************/
+  
+  //LH: Similarly, to any Proprietary commands, this does not get recognized by
+  //the RFC_DBELL_CMDR. Investigate.
+  
+  /*
+  txIeeeCommand.commandNo                = CMD_IEEE_TX;
+  txIeeeCommand.status                   = IDLE;
+  txIeeeCommand.pNextOp                  = NULL;
+  txIeeeCommand.startTime                = 0;
+  txIeeeCommand.startTrigger.triggerType = TRIG_NOW;
+  txIeeeCommand.condition.rule           = COND_NEVER;
+  
+  txIeeeCommand.txOpt.bIncludePhyHdr     = 0; //Append PHY header automatically
+  txIeeeCommand.txOpt.bIncludeCrc        = 0; //Append CRC automatically
+  txIeeeCommand.txOpt.payloadLenMsb      = 0; //Set MSB of payload length. Should be 0. Non-zero generates long test packets.
+
+  txIeeeCommand.payloadLen               = PAYLOAD_LENGTH; //Number of bytes in payload
+  txIeeeCommand.pPayload                 = packet; //Pointer to payload buffer of the given size above (PayloadLen)
+  */
+  
+  /****************************************************************************
+  *     GENERAL TX COMMAND (USED FOR TESTING PRIMARILY)
+  ****************************************************************************/
+  
+  txCommand.commandNo                = CMD_TX;
+  txCommand.status                   = IDLE;
+  txCommand.pNextOp                  = NULL;
+  txCommand.startTime                = 0;
+  txCommand.startTrigger.triggerType = TRIG_NOW;
+  txCommand.condition.rule           = COND_NEVER;
+  
+  txCommand.pktConfig.endianness     = 1; //Big endian byte/bit arrangement
+  txCommand.pktConfig.bFsOff         = 0; //Do not turn synth off after command execution
+  //txCommand.syncWord                 = 0xAAAAAAAA; //Faking a preamble (?)
+  txCommand.pktConfig.numHdrBits     = 16;
+  txCommand.pktConfig.bUseCrc        = 0; //Append a CRC to the packet
+  txCommand.pktConfig.bCrcIncHdr     = 0;
+  txCommand.pktConfig.bCrcIncSw      = 0;
+  txCommand.pktLen                   = PAYLOAD_LENGTH;
+  txCommand.pTxPkt                   = packet;
+  
+  
+    
+  /* Enter main, infinite, loop */
+  //while(true)
+  //{  
+    
+    //TODO: ADD THE SENSOR-TRIGGERED INTERRUPT
+    /* Wait for interrupt */
+    
+    //while (); //ADD SEMAPHORE, SET TO 0 or 1 in the ISR
+    //Clear it immediately after finishing the sending of the CMD to the DBELL
+    
+    //can probably set this to 2 or 3?
+    //while (packetCounter++ < NUMBER_OF_PACKETS)
+    //{
+    
+      /* 4.2. Create packet payload (including ZGP NWK Header & ZGP Application Payload) */
+      //Currently- no PHY Header; Preamble is transmitted in the Sync field of the command.
+      //Update: that doesn't seem to work. Let's add the PHY Header manually in the payload.
+    
+      //PHY Header (kind of quessing the structure)
+      
+      /*
+      packet[0] = (uint8_t)(0xAA);
+      packet[1] = (uint8_t)(0xAA);
+      packet[2] = (uint8_t)(0xAA);
+      packet[3] = (uint8_t)(0xAA); //4 bytes of Preamble
+      */
+        
+      //packet[1] = (uint8_t)(0xE5); //SFD
+
+      //Experimenting; Change payload length after
+      packet[1] = (uint8_t)(0xF5); //SFD
+
+      packet[2] = (uint8_t)(20);//Length + Res. Byte (PHY Header)
+
+      //packet[1] = (uint8_t)(20);//Length + Res. Byte (PHY Header)
+           
+      //MAC Header
+      packet[3] = (uint8_t)(0x20);
+      packet[4] = (uint8_t)(0x20); //2 bytes Frame Control
+      
+      packet[5] = (uint8_t)(0x00); //1 byte Seq. Number
+      
+      packet[6] = (uint8_t)(0xFF);
+      packet[7] = (uint8_t)(0xFF); //2 bytes Destination PAN ID
+      
+      packet[8] = (uint8_t)(0xFF);
+      packet[9] = (uint8_t)(0xFF); //2 bytes Destination Address
+      
+      //packet[13] = (uint8_t)(0xFF);
+      //packet[14] = (uint8_t)(0xFF); //2 bytes Source PAN ID
+      
+      //packet[15] = (uint8_t)(0x1A);     
+      //packet[16] = (uint8_t)(0x2A); //2 bytes Source Address
+      
+      //Both of these fields are not needed in the ZGP Frame
+      //packet[12] = (uint8_t)(0x0B); //MAC Header/Frame Payload
+      //packet[13] = (uint8_t)(0xFF);
+      //packet[14] = (uint8_t)(0xFF); //2 bytes FCS
+      
+      //the packet array is uint8_t so all assigned values need to be recast etc.
+      //uint8 is of size 256(0-255) bits/1 byte
+      packet[10] = (uint8_t)(0x0F); //ZGP NWK Control Byte
+      packet[11] = (uint8_t)(0x0A); //ZGP SRC ID Byte 1
+      //1 byte src ID should be enough, prolonging the packet unnecesserally could increase power usage during Tx
+      //Investigate if it does.
+      packet[12] = (uint8_t)(0x01); //ZGP SRC ID Byte 2
+      packet[13] = (uint8_t)(0x0B); //ZGP SRC ID Byte 3
+      packet[14] = (uint8_t)(0x01); //ZGP SRC ID Byte 4
+      
+      packet[15] = (uint8_t)(0x05); //Length byte, as payload length is variable (0x01/1 should be 1 byte ?)
+      
+      packet[16] = (uint8_t)(0x0F); //Payload of 5 bytes showing movement has been detected
+      packet[17] = (uint8_t)(0x12);
+      packet[18] = (uint8_t)(0x34);
+      packet[19] = (uint8_t)(0x56);
+      packet[20] = (uint8_t)(0x78);
+      
+      //The MIC field should be related to secure packets, hence not needed here
+      //packet[18] = (uint8_t)(0x0F); //MIC Field
+      packet[21] = (uint8_t)(0xBB); //FCS, which should usually be calculated automatically
+      packet[22] = (uint8_t)(0xBB); //2 bytes of Bs
+
+    while(true)
+    {  
+    
+
+      /* Reset command status to idle (from done), since we are reusing the same command */
+      //txIeeeCommand.status = IDLE;
+      //txTestCommand.status = IDLE;
+      txCommand.status = IDLE;
+      
+      /* 4.3. Send packet using CMD_IEEE_TX */  
+      //HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&txIeeeCommand;
+      //HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&txTestCommand;
+      HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&txCommand;
+      
+      
+      
+      /* 4.4. Wait until command finished executing */
+      /* 3.4.1 First wait until received, parsed and running on RF Core */
+      while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+      if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+      {
+        for(int j = 0; j<128 ; j++)
+        {
+        status_ieee_cmdsta |= (HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA));
+        //status_ieee_cmd    |= (txIeeeCommand.status & 0xFFFF);
+        }
+        appError();
+      }
+      
+      /* 3.4.2 Wait until command is done executing
+       *         - This may be implemented by going to deep sleep and wait for the IRQ_COMMAND_DONE 
+       *           instead of polling. See the EasyLink RX example on how to implement this. */
+      
+      //LH:I'm pretty sure I removed the interrupt, which is supposed to stop this, as it was
+      //button-press dependent. Solution would be to put it in a loop that is not infinite.
+      //while( (txIeeeCommand.status & 0x0F00) != IEEE_DONE_OK );
+      //while( (txTestCommand.status & 0x0F00) != DONE_OK );
+      for(int j = 0; j<10 ; j++){
+      status_ieee_cmd    |= (txCommand.status & 0xFFFF); }
+      
+      while( (txCommand.status & 0x0F00) != DONE_OK );
+      
+    //}
+      
+    //packetCounter = 0;
+  }
+}
+
+
+
+/*******************************************************************************
+* @brief    Patches the RF Core firmware
+*
+*           Patches the CPE as well as the modem and front-end.
+*
+*           Note: This should be done after a command has been succesfully sent to the RF Core
+*                 so that it is guaranteed to happen after the radio has done its own 
+*                 initialization.
+* 
+* @return   None
+*******************************************************************************/
+static void applyPatches(void)
+{
+  int status_pwmclken_patch = 0;
+  /* Apply CPE patch.
+   * Note: The below line will be included in a future CPE patch. */
+  *((uint32_t *)0x21000028) = 0x00000000;
+  applyPatch();
+  
+  /* Start RAT timer */
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = CMDR_DIR_CMD(CMD_START_RAT);
+  
+  /* Wait until done (because this is a direct command) */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();  
+  
+  /* Force-enable the MCE and RFE RAM, used for patching */
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) 
+    = CMDR_DIR_CMD_2BYTE(CMD_FORCE_CLK_ENA, RFC_PWR_PWMCLKEN_MDMRAM | 
+                                            RFC_PWR_PWMCLKEN_RFERAM);
+  
+  /* Wait until done (because this is a direct command) */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();  
+  
+  /* Apply the RFE and MCE patch to the respective patch RAM */
+  //enterGenfskRfePatch();
+  //enterGenfskMcePatch();
+  
+  //enterBleMcePatch();
+  //enterBleRfePatch();
+  
+  enterZigbeeRfePatch();
+  enterZigbeeMcePatch();
+  
+  /* Remove force-enable of the MCE and RFE RAM clocks */
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = CMDR_DIR_CMD_2BYTE(CMD_FORCE_CLK_ENA, 0);
+  
+  /* Wait until done (because this is a direct command) */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();
+  
+  
+  for (int i = 0; i<128; i++)
+  status_pwmclken_patch |= HWREG(RFC_PWR_NONBUF_BASE + RFC_PWR_O_PWMCLKEN);
+  
+  
+  /* Force BUS power domain on from RF Core
+   *   Note:
+   *     This has to be on for the RF Core to be able to access the patches via the system bus. */
+  writeRfRegCommand.commandNo = CMD_WRITE_RFREG;
+  writeRfRegCommand.address   = 0x1128;
+  writeRfRegCommand.value     = 2;
+  
+  HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDR) = (uint32_t)&writeRfRegCommand;
+  
+  /* Wait until done (because this is a immediate command) */
+  while( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) == CMDSTA_Pending);
+  if( HWREG(RFC_DBELL_BASE + RFC_DBELL_O_CMDSTA) != CMDSTA_Done )
+    appError();
+}
+
+/*******************************************************************************
+* @brief    Display welcome screen
+*
+* @return   None
+*******************************************************************************/
+/*
+static void appDisplayWelcomeScreen(void)
+{
+  lcdClear();
+  lcdBufferClear(0);
+  lcdSendBuffer(pLcdTiLogo);
+  lcdBufferPrintString(0, "CC13xx", 63, eLcdPage2);
+  lcdBufferPrintString(0, "TX Test", 63, eLcdPage3);
+  lcdBufferPrintString(0, "Press a key", 63, eLcdPage5);
+  lcdBufferPrintString(0, "to transmit", 63, eLcdPage6);
+  lcdSendBufferPart(0, 63, 127, eLcdPage2, eLcdPage6);
+}
+*/
+
+/*******************************************************************************
+* @brief    Update TX screen
+@
+@ param     packetSent - Number of packets sent
+*
+* @return   None
+*******************************************************************************/
+/*
+static void appUpdateTxScreen(uint32_t packetSent)
+{
+  lcdBufferClear(0);
+  lcdBufferPrintString(0, "Packets", 63, eLcdPage1);
+  lcdBufferPrintString(0, "Sent:", 63, eLcdPage2);
+  lcdBufferPrintInt(0, packetSent, 63, eLcdPage4);
+  lcdSendBufferPart(0, 63, 127, eLcdPage1, eLcdPage4);
+  lcdBufferPrintString(0, "", 50, eLcdPage5);
+  lcdBufferPrintString(0, "", 50, eLcdPage6);
+  lcdSendBufferPart(0, 50, 127, eLcdPage5, eLcdPage6);
+}
+*/
+
+/*******************************************************************************
+* @brief    Toggles DC/DC converter on/off
+*
+* @return   None
+*******************************************************************************/
+static void appDcdcOn(uint8_t on)
+{
+  if(on)
+  {
+    PowerCtrlSourceSet(PWRCTRL_PWRSRC_DCDC);
+  }
+  else
+  {
+    PowerCtrlSourceSet(PWRCTRL_PWRSRC_GLDO);
+  }
+}
+
+
+/*******************************************************************************
+* @brief    Error function. Eternal loop that blinks all LEDs quickly.
+*           Function assumes LEDs to be initialized by, for example, bspInit()
+*
+* @return   None
+*******************************************************************************/
+void appError(void)
+{
+  uint32_t ui32Delay = 1000000UL;
+  //bspLedClear(BSP_LED_ALL);
+
+  while(true)
+  {
+    CPUdelay(ui32Delay);
+    //bspLedToggle(BSP_LED_ALL);
+  }
+}
