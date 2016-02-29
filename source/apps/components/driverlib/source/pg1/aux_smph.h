@@ -1,0 +1,262 @@
+/******************************************************************************
+*  Filename:       aux_smph.h
+*  Revised:        $Date: 2014-03-04 15:36:43 +0100 (ti, 04 mar 2014) $
+*  Revision:       $Revision: 40299 $
+*
+*  Description:    Defines and prototypes for the AUX Semaphore
+*
+*  Copyright (C) 2014 Texas Instruments Incorporated - http://www.ti.com/
+*
+*
+*  Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+******************************************************************************/
+
+//*****************************************************************************
+//
+//! \addtogroup auxsmph_api
+//! @{
+//
+//*****************************************************************************
+
+#ifndef __AUX_SMPH_H__
+#define __AUX_SMPH_H__
+
+//*****************************************************************************
+//
+// If building with a C++ compiler, make all of the definitions in this header
+// have a C binding.
+//
+//*****************************************************************************
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include <stdbool.h>
+#include <stdint.h>
+#include "hw_types.h"
+#include "hw_aux_smph.h"
+#include "hw_memmap.h"
+#include "debug.h"
+
+//*****************************************************************************
+//
+// General constants and defines
+//
+//*****************************************************************************
+#define AUX_SMPH_FREE     0x00000001 // MCU Semaphore has not been claimed
+#define AUX_SMPH_CLAIMED  0x00000000 // MCU Semaphore has been claimed
+
+//*****************************************************************************
+//
+// Values that can be passed to AUXSMPHAcquire and AUXSMPHRelease
+// as the ui32Semaphore parameter.
+//
+//*****************************************************************************
+#define AUX_SMPH_0                0 // AUX Semaphore  0
+#define AUX_SMPH_1                1 // AUX Semaphore  1
+#define AUX_SMPH_2                2 // AUX Semaphore  2
+#define AUX_SMPH_3                3 // AUX Semaphore  3
+#define AUX_SMPH_4                4 // AUX Semaphore  4
+#define AUX_SMPH_5                5 // AUX Semaphore  5
+#define AUX_SMPH_6                6 // AUX Semaphore  6
+#define AUX_SMPH_7                7 // AUX Semaphore  7
+
+//*****************************************************************************
+//
+// API Overview
+//
+//*****************************************************************************
+// void AUXSMPHAcquire(uint32_t ui32Semaphore);
+// bool AUXSMPHTryAcquire(uint32_t ui32Semaphore);
+// void AUXSMPHRelease(uint32_t ui32Semaphore);
+
+//*****************************************************************************
+//
+// API Functions and prototypes
+//
+//*****************************************************************************
+
+//*****************************************************************************
+//
+//! Acquire an AUX semaphore
+//!
+//! \param ui32Semaphore is the semaphore number.
+//!
+//! This function acquires the given AUX semaphore, blocking the call until
+//! the semaphore is available.
+//!
+//! The \e ui32Semaphore parameter must be one of:
+//! \b AUX_SMPH_0, \b AUX_SMPH_1, .., \b AUX_SMPH_7.
+//!
+//! \note The semaphore can also be acquired by the dedicated AUX controller.
+//! The Cortex M3 master can thus be competing for the shared resource, i.e.
+//! the specified semaphore.
+//!
+//! \sa AUXSMPHTryAcquire(), AUXSMPHRelease()
+//!
+//! \return None
+//
+//*****************************************************************************
+__STATIC_INLINE void
+AUXSMPHAcquire(uint32_t ui32Semaphore)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT((ui32Semaphore == AUX_SMPH_0) ||
+           (ui32Semaphore == AUX_SMPH_1) ||
+           (ui32Semaphore == AUX_SMPH_2) ||
+           (ui32Semaphore == AUX_SMPH_3) ||
+           (ui32Semaphore == AUX_SMPH_4) ||
+           (ui32Semaphore == AUX_SMPH_5) ||
+           (ui32Semaphore == AUX_SMPH_6) ||
+           (ui32Semaphore == AUX_SMPH_7));
+
+    //
+    // Wait for semaphore to be released such that it can be claimed
+    // Semaphore register reads 1 when lock was acquired otherwise 0
+    // (i.e. AUX_SMPH_CLAIMED).
+    //
+    while(HWREG(AUX_SMPH_BASE + AUX_SMPH_O_SMPH0 + 4 * ui32Semaphore) ==
+            AUX_SMPH_CLAIMED)
+    {
+    }
+}
+
+//*****************************************************************************
+//
+//! Try to Acquire an AUX semaphore
+//!
+//! \param ui32Semaphore is the semaphore number.
+//!
+//! This function tries to acquire the given AUX semaphore, if the semaphore
+//! could not be claimed the function returns false.
+//!
+//! The \e ui32Semaphore parameter must be one of:
+//! \b AUX_SMPH_0, \b AUX_SMPH_1, .., \b AUX_SMPH_7.
+//!
+//! \note The semaphore can also be acquired by the dedicated AUX controller.
+//! The Cortex M3 master can thus be competing for the shared resource, i.e.
+//! the specified semaphore.
+//!
+//! \sa AUXSMPHAcquire(), AUXSMPHRelease()
+//!
+//! \return Returns true if semaphore was acquired, false otherwise
+//
+//*****************************************************************************
+__STATIC_INLINE bool
+AUXSMPHTryAcquire(uint32_t ui32Semaphore)
+{
+    uint32_t ui32SemaReg;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT((ui32Semaphore == AUX_SMPH_0) ||
+           (ui32Semaphore == AUX_SMPH_1) ||
+           (ui32Semaphore == AUX_SMPH_2) ||
+           (ui32Semaphore == AUX_SMPH_3) ||
+           (ui32Semaphore == AUX_SMPH_4) ||
+           (ui32Semaphore == AUX_SMPH_5) ||
+           (ui32Semaphore == AUX_SMPH_6) ||
+           (ui32Semaphore == AUX_SMPH_7));
+
+    //
+    // AUX Semaphore register reads 1 if lock was acquired
+    // (i.e. SMPH_FREE when read) but subsequent reads will read 0.
+    //
+    ui32SemaReg = HWREG(AUX_SMPH_BASE + AUX_SMPH_O_SMPH0 + 4 * ui32Semaphore);
+
+    return (ui32SemaReg == AUX_SMPH_FREE);
+}
+
+//*****************************************************************************
+//
+//! Release an AUX semaphore by Cortex M3 master
+//!
+//! \param ui32Semaphore is the semaphore number.
+//!
+//! This function releases the given AUX semaphore.
+//!
+//! \note It is up to the application to provide the convention for clearing
+//! semaphore.
+//!
+//! The \e ui32Semaphore parameter must be one of:
+//! \b AUX_SMPH_0, \b AUX_SMPH_1, .., \b AUX_SMPH_7.
+//!
+//! \note The semaphore can also be acquired by the dedicated AUX controller.
+//! The Cortex M3 master can thus be competing for the shared resource, i.e.
+//! the specified semaphore.
+//!
+//! \sa AUXSMPHAcquire(), AUXSMPHTryAcquire()
+//!
+//! \return None
+//
+//*****************************************************************************
+__STATIC_INLINE void
+AUXSMPHRelease(uint32_t ui32Semaphore)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT((ui32Semaphore == AUX_SMPH_0) ||
+           (ui32Semaphore == AUX_SMPH_1) ||
+           (ui32Semaphore == AUX_SMPH_2) ||
+           (ui32Semaphore == AUX_SMPH_3) ||
+           (ui32Semaphore == AUX_SMPH_4) ||
+           (ui32Semaphore == AUX_SMPH_5) ||
+           (ui32Semaphore == AUX_SMPH_6) ||
+           (ui32Semaphore == AUX_SMPH_7));
+
+    //
+    // No check before release. It is up to the application to provide the
+    // conventions for who and when a semaphore can be released.
+    //
+    HWREG(AUX_SMPH_BASE + AUX_SMPH_O_SMPH0 + 4 * ui32Semaphore) =
+        AUX_SMPH_FREE;
+}
+
+//*****************************************************************************
+//
+// Mark the end of the C bindings section for C++ compilers.
+//
+//*****************************************************************************
+#ifdef __cplusplus
+}
+#endif
+
+#endif // __AUX_SMPH_H__
+
+//*****************************************************************************
+//
+//! Close the Doxygen group.
+//! @}
+//
+//*****************************************************************************
