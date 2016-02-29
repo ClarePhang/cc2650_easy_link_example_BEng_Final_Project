@@ -1,0 +1,21 @@
+"--endian=little" 
+
+"--cpu=Cortex-M3" 
+
+"--fpu=None" 
+
+"-p" 
+
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\CONFIG\debugger\TexasInstruments\CC2650F128.ddf" 
+
+"--semihosting" 
+
+"--device=CC2650F128" 
+
+"--xds_board_file=C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\config\debugger\TexasInstruments\xds\CC2650_XDS100v3c2.dat" 
+
+"--drv_communication_log=C:\Users\Lucho\Google Диск\Documents\EE3_Bachelor_Project\FW_Backups\cc2650_FW_v0.9\cc26xx_cc13xx_easy_link_rev_1_0\cc26xx_cc13xx_easy_link_rev_1_0\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\cspycomm.log" 
+
+
+
+

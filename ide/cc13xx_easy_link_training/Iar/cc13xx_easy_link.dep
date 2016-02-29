@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2458621772</fileChecksum>
+  <configuration>
+    <name>RX</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>TX</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_event.c</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_rtc.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_timer.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\ddi.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\flash.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\pwr_ctrl.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_smph.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_wuc.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\debug.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\event.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_ctrl.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\ioc.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\i2s.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\prcm.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\timer.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\interrupt.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\trng.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\uart.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\sys_ctrl.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\watchdog.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\ccfg.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\adi.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\gpio.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\cpu.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\spis.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\systick.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\chipinfo.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\setup.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\udma.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_batmon.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\cc13xx_easy_link.pbd</file>
+      <file>$PROJ_DIR$\TX\Obj\cc13xx_easy_link_tx.pbi</file>
+      <file>$PROJ_DIR$\TX\List\per_test.log</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\utils\cc26xx\backdoor.h</file>
+      <file>$PROJ_DIR$\TX\List\per_test.map</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\pg2\hw_ddi.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_batmon.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\pg2\chipinfo.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\pg2\chipinfo.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\adi.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\udma.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_udma.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_gpt.h</file>
+      <file>$PROJ_DIR$\TX\Obj\osc.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\trng.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_trng.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_types.h</file>
+      <file>$PROJ_DIR$\TX\Obj\startup_iar.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\systick.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\radio_files\cc26xx_pg2\ieee_cmd.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\timer.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_wdt.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\watchdog.h</file>
+      <file>$PROJ_DIR$\TX\Obj\ssi.o</file>
+      <file>$PROJ_DIR$\TX\Obj\smph.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\smph.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_vims.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_adi.h</file>
+      <file>$PROJ_DIR$\TX\Obj\vims.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\i2c.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\sys_ctrl.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aon_event.h</file>
+      <file>$PROJ_DIR$\TX\Obj\ssi.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\osc.h</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_ctrl.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_wuc.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\interrupt.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\gpio.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ddi.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\i2s.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ioc.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\osc.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\debug.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\event.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\i2c.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\flash.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_ctrl.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_tdc.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\crypto.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_rtc.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_smph.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_timer.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_wuc.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_ioc.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_wuc.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\cpu.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\sys_ctrl.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\udma.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\uart.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\vims.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\prcm.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_fcfg1.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\spis.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_event.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\pwr_ctrl.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ssi.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_device.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\smph.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\timer.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\trng.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\systick.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg1\setup.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg2\startup_iar.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg2\setup.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg1\startup_iar.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\utils\cc26xx\backdoor.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\watchdog.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\apps\cc13xx_easy_link_training\cc13xx_easy_link_rx.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_batmon.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_chip_def.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg2\ccfg.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_memmap.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\debug.h</file>
+      <file>$PROJ_DIR$\TX\Obj\i2s.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_ioc.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\crypto.pbi</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_wuc.o</file>
+      <file>$PROJ_DIR$\TX\Obj\setup.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_timer.o</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_ccfg_simple_struct.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_ssi.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_adi_4_aux.h</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_tdc.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ioc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_crypto.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aon_batmon.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\crypto.h</file>
+      <file>$PROJ_DIR$\TX\Obj\ccfg.o</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aon_sysctl.h</file>
+      <file>$PROJ_DIR$\TX\Exe\per_test.out</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_rtc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_ccfg.h</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_event.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_timer.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\vims.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ssi.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\libraries\cc13xx_pg1_init_lib\cc13xx_pg1_init_lib.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\i2s.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\flash.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_ctrl.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_flash.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aux_tdc.h</file>
+      <file>$PROJ_DIR$\TX\Obj\event.o</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_adi_1_synth.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\sys_ctrl.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aux_sce.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_tdc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aux_wuc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\spis.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\apps\cc13xx_easy_link_training\cc13xx_easy_link_tx.c</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aon_rtc.h</file>
+      <file>$PROJ_DIR$\TX\Obj\uart.o</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_wuc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_i2s.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_adi_0_rf.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_adi_3_refsys.h</file>
+      <file>$PROJ_DIR$\TX\Obj\trng.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\ccfg.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\systick.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\ssi.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\uart.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\startup_iar.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\timer.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\watchdog.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\setup.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Exe\cc13xx_per_test.bin</file>
+      <file>$PROJ_DIR$\TX\Obj\cc13xx_easy_link_tx.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\sys_ctrl.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\udma.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\vims.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\spis.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\ioc.o</file>
+      <file>$PROJ_DIR$\TX\Obj\chipinfo.o</file>
+      <file>$PROJ_DIR$\TX\Obj\pwr_ctrl.o</file>
+      <file>$PROJ_DIR$\TX\Obj\spis.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_smph.o</file>
+      <file>$PROJ_DIR$\TX\Obj\i2c.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_ioc.o</file>
+      <file>$PROJ_DIR$\TX\Obj\prcm.o</file>
+      <file>$PROJ_DIR$\TX\Obj\systick.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_rtc.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_batmon.o</file>
+      <file>$PROJ_DIR$\TX\Obj\flash.o</file>
+      <file>$PROJ_DIR$\TX\Obj\ddi.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_event.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_wuc.o</file>
+      <file>$PROJ_DIR$\TX\Obj\crypto.o</file>
+      <file>$PROJ_DIR$\TX\Obj\debug.o</file>
+      <file>$PROJ_DIR$\TX\Obj\gpio.o</file>
+      <file>$PROJ_DIR$\TX\Obj\cpu.o</file>
+      <file>$PROJ_DIR$\TX\Obj\osc.o</file>
+      <file>$PROJ_DIR$\TX\Obj\smph.o</file>
+      <file>$PROJ_DIR$\TX\Obj\interrupt.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_tdc.o</file>
+      <file>$PROJ_DIR$\TX\Obj\timer.o</file>
+      <file>$PROJ_DIR$\TX\Obj\adi.o</file>
+      <file>$PROJ_DIR$\TX\Obj\trng.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_wuc.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\cc13xx_easy_link_tx.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_ctrl.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\flash.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\i2c.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_ioc.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\interrupt.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\ddi.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\ioc.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\pwr_ctrl.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\crypto.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_rtc.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\i2s.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\osc.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\smph.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_smph.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\vims.o</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_tdc.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\prcm.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_batmon.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_wuc.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\adi.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\cpu.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\aux_timer.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\debug.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\startup_iar.o</file>
+      <file>$PROJ_DIR$\TX\Obj\watchdog.o</file>
+      <file>$PROJ_DIR$\TX\Obj\udma.o</file>
+      <file>$PROJ_DIR$\TX\Obj\gpio.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\aon_event.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\chipinfo.__cstat.et</file>
+      <file>$PROJ_DIR$\TX\Obj\event.__cstat.et</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aux_smph.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_ddi.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ddi.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\adi.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_uart.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\radio_files\cc26xx_pg2\mailbox.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_ints.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\radio_files\cc26xx_pg2\ieee_mailbox.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_rfc_dbell.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\radio_defs\radio_par.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_nvic.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_ioc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aux_timer.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\radio_files\cc26xx_pg2\common_cmd_pg2.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\cpu.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_event.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\rom.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_ioc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aon_ioc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_wuc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\prcm.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_prcm.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_adi_2_refsys.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_smph.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\rfc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\interrupt.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\event.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_rfc_pwr.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\gpio.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_gpio.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\pwr_ctrl.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_aon_wuc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_ddi_0_osc.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\i2c.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_i2c.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_spis.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_smph.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\uart.h</file>
+      <file>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\inc\hw_sysctl.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_event.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 141</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 194</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 236</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 102 40 41 35 38 69 59 36 39 37 53 118 120 105 70 121 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_batmon.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 191</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 226</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 117 40 41 35 38 69 59 36 39 37 53 118 120 134 121 100</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\pg2\chipinfo.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 182</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 237</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45 41 35 38 69 59 36 39 37 40 53 118 120 100</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\adi.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 205</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 228</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53 41 35 38 69 59 36 39 37 40 118 120 239 242 243 246 65 121 241 240 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 138</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\interrupt.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 202</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 213</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 266 40 41 35 38 69 59 36 39 37 246 53 118 251 121 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\gpio.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 198</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 235</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 269 40 41 35 38 69 59 36 39 37 53 118 120 270 121</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ddi.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 193</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 214</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 241 40 41 35 38 69 59 36 39 37 53 118 120 240 239 121 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\i2s.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 122</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 219</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 147 40 41 35 38 69 59 36 39 37 53 118 120 246 163 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ioc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 181</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 215</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 132 40 41 35 38 69 59 36 39 37 53 118 120 252 246 266 251 121 255 257 269 270</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\osc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 50</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 200</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 220</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53 41 35 38 69 59 36 39 37 40 118 140 117 120 134 121 139 160 257 72 240 273 260 246 272 266 251 255 162 157 241 239</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\debug.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 197</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 231</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39 35 36 37 59 38 41 69 40</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 40 41 35 38 69 59 36 39 37 53 118 121</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\event.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 152</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 238</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 267 40 41 35 38 69 59 36 39 37 53 118 120 256 121</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\i2c.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 186</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 211</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 274 40 41 35 38 69 59 36 39 37 53 118 246 120 275 279 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\flash.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 192</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 210</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53 41 35 38 69 59 36 39 37 40 118 148 150 120 246 137 100 266 251 121 255 257 45</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_ctrl.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 73</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 209</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 149 40 41 35 38 69 59 36 39 37 53 118 120 155 121</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_tdc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 131</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 203</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 224</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 156 40 41 35 38 69 59 36 39 37 53 118 120 246 151 121 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\crypto.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 124</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 196</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 217</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 135 40 41 35 38 69 59 36 39 37 53 118 120 246 133 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_rtc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 190</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 218</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 139 40 41 35 38 69 59 36 39 37 53 118 120 160 121 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_smph.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 185</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 222</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 264 40 41 35 38 69 59 36 39 37 53 118 239 120 121</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_timer.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 127</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 230</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 142 40 41 35 38 69 59 36 39 37 53 118 246 120 253 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aux_wuc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 125</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 207</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 162 40 41 35 38 69 59 36 39 37 53 118 120 157 121 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_ioc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 123</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 187</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 212</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 258 40 41 35 38 69 59 36 39 37 53 118 120 259 121 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\aon_wuc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 74</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 195</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 227</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 260 40 41 35 38 69 59 36 39 37 53 118 120 246 272 160 266 251 121 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\cpu.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 199</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 229</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 255 40 41 35 38 69 59 36 39 37 53 118 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\sys_ctrl.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 68</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 177</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53 41 35 38 69 59 36 39 37 40 118 140 117 120 134 121 154 246 279 262 251 272 157 259 273 268 165 137 160 100 266 255 257 271 263 72 240 260 162 241 239 261 258 242 243 65 143 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\udma.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 234</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 178</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 47 40 41 35 38 69 59 36 39 37 53 118 246 120 48 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\uart.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 161</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 170</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 278 40 41 35 38 69 59 36 39 37 53 118 243 120 246 266 251 121 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\vims.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 66</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 223</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 179</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 143 40 41 35 38 69 59 36 39 37 53 118 120 64 121 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\prcm.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 188</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 225</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 261 40 41 35 38 69 59 36 39 37 53 118 120 246 262 251 160 266 121 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\spis.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 184</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 180</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 158 40 41 35 38 69 59 36 39 37 120 53 118 246 276 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\pwr_ctrl.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 183</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 216</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 271 40 41 35 38 69 59 36 39 37 53 118 120 246 272 137 160 263 121 266 251 255 257 72 240 273 260 162 157 241 239 261 262 258 259 242 243 65</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\ssi.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 61</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 169</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 144 40 41 35 38 69 59 36 39 37 246 120 53 118 129 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\smph.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 201</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 221</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 40 41 35 38 69 59 36 39 37 53 118 277 120 121 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\timer.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 204</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 172</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 57 40 41 35 38 69 59 36 39 37 246 53 118 120 49 266 251 121 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\trng.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 206</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 166</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 51 40 41 35 38 69 59 36 39 37 53 118 52 120 246 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\systick.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 189</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 168</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 55 40 41 35 38 69 59 36 39 37 246 251 53 118 121 266 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg2\startup_iar.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 54</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 232</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 171</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 280 35</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 280 35 53 41 38 69 59 36 39 37 40 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg2\setup.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 126</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 174</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 280 35</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 53 41 35 38 69 59 36 39 37 40 118 65 164 153 263 165 130 259 137 272 157 140 240 150 100 273 262 64 134 160 242 243 246 121 241 239 255 257 45 261 251 266 154 279 268 271 72 260 162 258 143 117 280</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\driverlib\cc26xx\source\watchdog.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 233</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 173</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 60 40 41 35 38 69 59 36 39 37 53 118 246 120 58 121 266 251 255 257</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\components\devices\cc26xx\startup_files_pg2\ccfg.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 136</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 167</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37 35 59 38 39 36 41 69</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 41 35 38 69 59 36 39 37 53 40 118 140 128</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\TX\Exe\per_test.out</name>
+      <outputs>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 175</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\source\apps\cc13xx_easy_link_training\cc13xx_easy_link_tx.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 176</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38 36 39 35 69 37 59 145 281</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 281 35 38 69 59 36 39 37 145 261 40 41 53 118 120 246 262 251 160 266 121 255 257 271 272 137 263 72 240 273 260 162 157 241 239 258 259 242 243 65 265 268 269 270 132 252 102 105 70 254 244 245 247 56 248 249 250</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

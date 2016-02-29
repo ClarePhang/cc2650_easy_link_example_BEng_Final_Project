@@ -1,0 +1,15 @@
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\bin\armproc.dll" 
+
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\bin\armxds100.dll" 
+
+"C:\Users\Lucho\Google Диск\Documents\EE3_Bachelor_Project\FW_Backups\cc2650_FW_v0.9\cc26xx_cc13xx_easy_link_rev_1_0\cc26xx_cc13xx_easy_link_rev_1_0\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Exe\per_test.out" 
+
+--plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\bin\armbat.dll" 
+
+--device_macro "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\config\debugger\TexasInstruments\CC26xx.dmac" 
+
+--flash_loader "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\config\flashloader\TexasInstruments\FlashCC26xx.board" 
+
+
+
+

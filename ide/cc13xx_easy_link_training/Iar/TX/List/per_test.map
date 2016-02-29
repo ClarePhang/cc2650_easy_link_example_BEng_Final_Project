@@ -1,0 +1,433 @@
+###############################################################################
+#
+# IAR ELF Linker V7.10.3.6832/W32 for ARM                 25/Jun/2015  16:13:11
+# Copyright 2007-2014 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Exe\per_test.out
+#    Map file     =  
+#        C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\List\per_test.map
+#    Command line =  
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\adi.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aon_batmon.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aon_event.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aon_ioc.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aon_rtc.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aon_wuc.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aux_ctrl.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aux_smph.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aux_tdc.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aux_timer.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\aux_wuc.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\cc13xx_easy_link_tx.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\ccfg.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\chipinfo.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\cpu.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\crypto.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\ddi.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\debug.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\event.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\flash.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\gpio.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\i2c.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\i2s.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\interrupt.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\ioc.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\osc.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\prcm.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\pwr_ctrl.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\setup.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\smph.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\spis.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\ssi.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\startup_iar.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\sys_ctrl.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\systick.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\timer.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\trng.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\uart.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\udma.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\vims.o"
+#        "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj\watchdog.o"
+#        -o "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Exe\per_test.out"
+#        --map "C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\List\per_test.map"
+#        --log
+#        libraries,initialization,modules,redirects,sections,veneers,unused_fragments
+#        --log_file "C:\Users\Lucho\Documents\EE3_Bachelor
+#        Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\List\per_test.log"
+#        --config "C:\Users\Lucho\Documents\EE3_Bachelor
+#        Project\Datasheets\TI_CC26xx_Final\cc26xxware\cc26xxware_2_20_06_14829\linker_files\cc26x0f128.icf"
+#        --semihosting "C:\Users\Lucho\Documents\EE3_Bachelor
+#        Project\Datasheets\TI
+#        CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\..\..\..\source\libraries\cc13xx_pg1_init_lib\binary\cc13xx_init_lib.lib"
+#        --entry __iar_program_start --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x00000000 { ro section .intvec };
+"A2":  place at end of [0x00000000-0x0001ffff] { ro section .ccfg };
+"P1":  place in [from 0x00000000 to 0x0001ffff] { ro };
+"A4":  place at end of [0x20000000-0x20004fff] { block CSTACK };
+"P3":  place in [from 0x20000000 to 0x20004fff] { rw };
+
+  Section            Kind        Address    Size  Object
+  -------            ----        -------    ----  ------
+"A1":                                       0xc8
+  .intvec            const    0x00000000    0xc8  startup_iar.o [1]
+                            - 0x000000c8    0xc8
+
+"P1":                                     0x16cc
+  .text              ro code  0x000000c8   0x79c  cc13xx_easy_link_tx.o [1]
+  .text              ro code  0x00000864    0x18  cpu.o [1]
+  .text              ro code  0x0000087c    0xc4  osc.o [1]
+  .text              ro code  0x00000940    0xd4  ddi.o [1]
+  .text              ro code  0x00000a14   0x614  setup.o [1]
+  .text              ro code  0x00001028    0xa6  chipinfo.o [1]
+  .text              ro code  0x000010ce    0x2e  copy_init3.o [4]
+  .rodata            const    0x000010fc   0x4a0  cc13xx_easy_link_tx.o [1]
+  .text              ro code  0x0000159c    0x28  data_init.o [4]
+  .rodata            const    0x000015c4    0x24  cc13xx_easy_link_tx.o [1]
+  .text              ro code  0x000015e8    0x22  zero_init3.o [4]
+  .iar.init_table    const    0x0000160c    0x24  - Linker created -
+  .text              ro code  0x00001630    0x1a  cmain.o [4]
+  .text              ro code  0x0000164a     0x4  low_level_init.o [3]
+  .text              ro code  0x0000164e     0x4  exit.o [3]
+  .text              ro code  0x00001654     0xa  cexit.o [4]
+  .text              ro code  0x00001660    0x14  exit.o [5]
+  .text              ro code  0x00001674    0x16  startup_iar.o [1]
+  .text              ro code  0x0000168a     0xc  cstartup_M.o [4]
+  .rodata            const    0x00001698    0x14  cc13xx_easy_link_tx.o [1]
+  .rodata            const    0x000016ac     0x0  zero_init3.o [4]
+  .rodata            const    0x000016ac     0x0  copy_init3.o [4]
+  Initializer bytes  ro data  0x000016ac    0xe8  <for P3 s0>
+                            - 0x00001794  0x16cc
+
+"A2":                                       0x54
+  .ccfg              const    0x0001ffac    0x54  ccfg.o [1]
+                            - 0x00020000    0x54
+
+"P3", part 1 of 2:                          0xe8
+  P3 s0                       0x20000000    0xe8  <Init block>
+    .data            inited   0x20000000    0xe8  cc13xx_easy_link_tx.o [1]
+                            - 0x200000e8    0xe8
+
+"P3", part 2 of 2:                          0x8c
+  .bss               zero     0x200000e8    0x1c  cc13xx_easy_link_tx.o [1]
+  .bss               zero     0x20000104    0x1c  cc13xx_easy_link_tx.o [1]
+  .bss               zero     0x20000120    0x18  cc13xx_easy_link_tx.o [1]
+  .bss               zero     0x20000138    0x18  cc13xx_easy_link_tx.o [1]
+  .bss               zero     0x20000150    0x18  cc13xx_easy_link_tx.o [1]
+  .bss               zero     0x20000168     0x8  cc13xx_easy_link_tx.o [1]
+  .bss               zero     0x20000170     0x1  cc13xx_easy_link_tx.o [1]
+                            - 0x20000171    0x89
+
+"A4":                                      0x800
+  CSTACK                      0x20004800   0x800  <Block>
+    .stack           uninit   0x20004800     0x4  startup_iar.o [1]
+    CSTACK           uninit   0x20004804   0x7fc  <Block tail>
+                            - 0x20005000   0x800
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x89:
+          0x200000e8  0x89
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0xe8:
+          0x000016ac  0xe8
+    1 destination range, total size 0xe8:
+          0x20000000  0xe8
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                 ro code  ro data  rw data
+    ------                 -------  -------  -------
+C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj: [1]
+    cc13xx_easy_link_tx.o    1 948    1 472      369
+    ccfg.o                               84
+    chipinfo.o                 166
+    cpu.o                       24
+    ddi.o                      212
+    osc.o                      196
+    setup.o                  1 556
+    startup_iar.o               22      200        4
+    ------------------------------------------------
+    Total:                   4 124    1 756      373
+
+command line: [2]
+    ------------------------------------------------
+    Total:
+
+dl7M_tln.a: [3]
+    exit.o                       4
+    low_level_init.o             4
+    ------------------------------------------------
+    Total:                       8
+
+rt7M_tl.a: [4]
+    cexit.o                     10
+    cmain.o                     26
+    copy_init3.o                46
+    cstartup_M.o                12
+    data_init.o                 40
+    zero_init3.o                34
+    ------------------------------------------------
+    Total:                     168
+
+shb_l.a: [5]
+    exit.o                      20
+    ------------------------------------------------
+    Total:                      20
+
+    Gaps                         4        4
+    Linker created                       36    2 044
+----------------------------------------------------
+    Grand Total:             4 324    1 796    2 417
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+?main                   0x00001631         Code  Gb  cmain.o [4]
+AONIntHandler           0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AONProgIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AONRTCIntHandler        0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AONWUCPowerStatus       0x0000087d    0x6  Code  Lc  osc.o [1]
+AUXADCIntHandler        0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AUXCombEventIntHandler  0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AUXCompAIntHandler      0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AUXSWEvent0IntHandler   0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AUXSWEvent1IntHandler   0x00001689    0x2  Code  Wk  startup_iar.o [1]
+AuxAdiDdiSafeRead       0x00000985   0x44  Code  Lc  ddi.o [1]
+AuxAdiDdiSafeWrite      0x00000941   0x44  Code  Lc  ddi.o [1]
+AuxAdiDdiSafeWrite      0x00000a15   0x48  Code  Lc  setup.o [1]
+BusFaultIntHandler      0x00001689    0x2  Code  Wk  startup_iar.o [1]
+CSTACK$$Base            0x20004800          --   Gb  - Linker created -
+CSTACK$$Limit           0x20005000          --   Gb  - Linker created -
+ChipInfo_ChipFamilyIsCC26xx
+                        0x00001031   0x14  Code  Lc  chipinfo.o [1]
+ChipInfo_GetChipFamily  0x0000105d   0x28  Code  Gb  chipinfo.o [1]
+ChipInfo_GetDeviceIdHwRevCode
+                        0x00001029    0x8  Code  Lc  chipinfo.o [1]
+ChipInfo_GetHwRevision  0x00001085   0x34  Code  Gb  chipinfo.o [1]
+ChipInfo_HwRevisionIs_GTEQ_2_2
+                        0x00001045   0x14  Code  Lc  chipinfo.o [1]
+CryptoIntHandler        0x00001689    0x2  Code  Wk  startup_iar.o [1]
+DDI32RegWrite           0x00000a5d   0x10  Code  Lc  setup.o [1]
+DebugMonIntHandler      0x00001689    0x2  Code  Wk  startup_iar.o [1]
+DynProgIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+FaultISR                0x00001687    0x2  Code  Wk  startup_iar.o [1]
+FaultISRHandler         0x00001687    0x2  Code  Lc  startup_iar.o [1]
+FlashIntHandler         0x00001689    0x2  Code  Wk  startup_iar.o [1]
+GPIOEventClear          0x0000012b    0x8  Code  Lc  cc13xx_easy_link_tx.o [1]
+GPIOIntHandler          0x000001b5   0x12  Code  Gb  cc13xx_easy_link_tx.o [1]
+GPIOIntSemaphore        0x20000170    0x1  Data  Lc  cc13xx_easy_link_tx.o [1]
+GetTrimForAdcShModeEn   0x00000ecd   0x12  Code  Lc  setup.o [1]
+GetTrimForAdcShVbufEn   0x00000edf   0x12  Code  Lc  setup.o [1]
+GetTrimForAmpcompCtrl   0x00000e49   0x72  Code  Lc  setup.o [1]
+GetTrimForAmpcompTh1    0x00000e25   0x24  Code  Lc  setup.o [1]
+GetTrimForAmpcompTh2    0x00000e01   0x24  Code  Lc  setup.o [1]
+GetTrimForAnabypassValue1
+                        0x00000d65   0x6a  Code  Lc  setup.o [1]
+GetTrimForDblrLoopFilterResetVoltage
+                        0x00000ebb   0x12  Code  Lc  setup.o [1]
+GetTrimForRadcExtCfg    0x00000f25   0x22  Code  Lc  setup.o [1]
+GetTrimForRcOscLfIBiasTrim
+                        0x00000f47   0x12  Code  Lc  setup.o [1]
+GetTrimForRcOscLfRtuneCtuneTrim
+                        0x00000dcf   0x1e  Code  Lc  setup.o [1]
+GetTrimForXoscHfCtl     0x00000ef1   0x22  Code  Lc  setup.o [1]
+GetTrimForXoscHfFastStart
+                        0x00000f13   0x12  Code  Lc  setup.o [1]
+GetTrimForXoscHfIbiastherm
+                        0x00000ded   0x14  Code  Lc  setup.o [1]
+GetTrimForXoscLfRegulatorAndCmirrwrRatio
+                        0x00000f59   0x12  Code  Lc  setup.o [1]
+HapiTrimDeviceColdReset
+                        0x00000cf7   0x6e  Code  Lc  setup.o [1]
+HapiTrimDevicePowerDown
+                        0x00000b27    0x2  Code  Lc  setup.o [1]
+HapiTrimDeviceShutDown  0x00000b29  0x1c6  Code  Lc  setup.o [1]
+I2CIntHandler           0x00001689    0x2  Code  Wk  startup_iar.o [1]
+I2SIntHandler           0x00001689    0x2  Code  Wk  startup_iar.o [1]
+IOCIntClear             0x00000133    0xe  Code  Lc  cc13xx_easy_link_tx.o [1]
+IntDefaultHandler       0x00001689    0x2  Code  Lc  startup_iar.o [1]
+IntMasterEnable         0x000000c9   0x14  Code  Lc  cc13xx_easy_link_tx.o [1]
+MPUFaultIntHandler      0x00001689    0x2  Code  Wk  startup_iar.o [1]
+NOROM_CPUcpsid          0x00000865    0x8  Code  Gb  cpu.o [1]
+NOROM_CPUcpsie          0x0000086d    0x8  Code  Gb  cpu.o [1]
+NOROM_CPUdelay          0x00000875    0x8  Code  Gb  cpu.o [1]
+NOROM_DDI16BitfieldRead
+                        0x000009f3   0x22  Code  Gb  ddi.o [1]
+NOROM_DDI16BitfieldWrite
+                        0x000009cd   0x26  Code  Gb  ddi.o [1]
+NOROM_OSCClockSourceGet
+                        0x000008dd   0x26  Code  Gb  osc.o [1]
+NOROM_OSCClockSourceSet
+                        0x00000883   0x5a  Code  Gb  osc.o [1]
+NOROM_OSCInterfaceEnable
+                        0x00000903   0x2e  Code  Gb  osc.o [1]
+NmiSR                   0x00001685    0x2  Code  Wk  startup_iar.o [1]
+NmiSRHandler            0x00001685    0x2  Code  Lc  startup_iar.o [1]
+OSCHfSourceSwitch       0x000000f7    0xc  Code  Lc  cc13xx_easy_link_tx.o [1]
+OSCInterfaceDisable     0x00000103   0x1c  Code  Lc  cc13xx_easy_link_tx.o [1]
+PRCMLoadGet             0x000000e7   0x10  Code  Lc  cc13xx_easy_link_tx.o [1]
+PRCMLoadSet             0x000000dd    0xa  Code  Lc  cc13xx_easy_link_tx.o [1]
+PendSVIntHandler        0x00001689    0x2  Code  Wk  startup_iar.o [1]
+RFCCPE0IntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+RFCCPE1IntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+RFCClockEnable          0x0000011f    0xc  Code  Lc  cc13xx_easy_link_tx.o [1]
+RFCCmdAckIntHandler     0x00001689    0x2  Code  Wk  startup_iar.o [1]
+RFCHardwareIntHandler   0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Region$$Table$$Base     0x0000160c          --   Gb  - Linker created -
+Region$$Table$$Limit    0x00001630          --   Gb  - Linker created -
+ResetISR                0x00001675   0x10  Code  Gb  startup_iar.o [1]
+SSI0IntHandler          0x00001689    0x2  Code  Wk  startup_iar.o [1]
+SSI1IntHandler          0x00001689    0x2  Code  Wk  startup_iar.o [1]
+STACK_TOP {Abs}         0x20005000          --   Gb  command line/config [2]
+SVCallIntHandler        0x00001689    0x2  Code  Wk  startup_iar.o [1]
+SWEvent0IntHandler      0x00001689    0x2  Code  Wk  startup_iar.o [1]
+SignExtendVddrTrimValue
+                        0x00000cef    0x8  Code  Lc  setup.o [1]
+SysCtrlAonSync          0x00000a6d    0x8  Code  Lc  setup.o [1]
+SysTickIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+TRNGIntHandler          0x00001689    0x2  Code  Wk  startup_iar.o [1]
+ThisCodeIsBuiltForCC26xxHwRev22AndLater_HaltIfViolated
+                        0x000010b9   0x16  Code  Gb  chipinfo.o [1]
+Timer0AIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Timer0BIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Timer1AIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Timer1BIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Timer2AIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Timer2BIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Timer3AIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+Timer3BIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+UART0IntHandler         0x00001689    0x2  Code  Wk  startup_iar.o [1]
+UsageFaultIntHandler    0x00001689    0x2  Code  Wk  startup_iar.o [1]
+WatchdogIntHandler      0x00001689    0x2  Code  Wk  startup_iar.o [1]
+__ccfg                  0x0001ffac   0x54  Data  Gb  ccfg.o [1]
+__cmain                 0x00001631         Code  Gb  cmain.o [4]
+__exit                  0x00001661   0x14  Code  Gb  exit.o [5]
+__iar_copy_init3        0x000010cf   0x2e  Code  Gb  copy_init3.o [4]
+__iar_data_init3        0x0000159d   0x28  Code  Gb  data_init.o [4]
+__iar_program_start     0x0000168b         Code  Gb  cstartup_M.o [4]
+__iar_zero_init3        0x000015e9   0x22  Code  Gb  zero_init3.o [4]
+__low_level_init        0x0000164b    0x4  Code  Gb  low_level_init.o [3]
+__vector_table          0x00000000   0xc8  Data  Gb  startup_iar.o [1]
+_call_main              0x0000163d         Code  Gb  cmain.o [4]
+_exit                   0x00001655         Code  Gb  cexit.o [4]
+_main                   0x00001647         Code  Gb  cmain.o [4]
+appError                0x000007c7    0xc  Code  Lc  cc13xx_easy_link_tx.o [1]
+applyPatch              0x00000163   0x10  Code  Lc  cc13xx_easy_link_tx.o [1]
+applyPatches            0x0000024b   0xce  Code  Lc  cc13xx_easy_link_tx.o [1]
+configurePatch          0x0000014f   0x14  Code  Lc  cc13xx_easy_link_tx.o [1]
+dummy_stack             0x20004800    0x4  Data  Lc  startup_iar.o [1]
+enable_int_IO           0x000003bd   0x50  Code  Lc  cc13xx_easy_link_tx.o [1]
+enterCpePatch           0x00000141    0xc  Code  Lc  cc13xx_easy_link_tx.o [1]
+enterSysPatch           0x0000014d    0x2  Code  Lc  cc13xx_easy_link_tx.o [1]
+enterZigbeeMcePatch     0x00000173   0x24  Code  Lc  cc13xx_easy_link_tx.o [1]
+enterZigbeeRfePatch     0x00000197   0x1e  Code  Lc  cc13xx_easy_link_tx.o [1]
+exit                    0x0000164f    0x4  Code  Gb  exit.o [3]
+fsCommand               0x20000138   0x18  Data  Lc  cc13xx_easy_link_tx.o [1]
+init_RFC_MCU            0x00000319   0xa4  Code  Lc  cc13xx_easy_link_tx.o [1]
+main                    0x000001c7   0x84  Code  Gb  cc13xx_easy_link_tx.o [1]
+packet                  0x20000150   0x18  Data  Lc  cc13xx_easy_link_tx.o [1]
+patchSys                0x20000000   0xe8  Data  Lc  cc13xx_easy_link_tx.o [1]
+patchZigbeeRfe          0x000010fc  0x4a0  Data  Lc  cc13xx_easy_link_tx.o [1]
+radioSetupCommand       0x20000120   0x18  Data  Lc  cc13xx_easy_link_tx.o [1]
+setup_radio             0x0000040d  0x152  Code  Lc  cc13xx_easy_link_tx.o [1]
+setup_synthesizer       0x0000055f   0xdc  Code  Lc  cc13xx_easy_link_tx.o [1]
+setup_tx                0x0000063b  0x18c  Code  Lc  cc13xx_easy_link_tx.o [1]
+trimDevice              0x00000a75   0xb2  Code  Gb  setup.o [1]
+txCommand               0x200000e8   0x1c  Data  Lc  cc13xx_easy_link_tx.o [1]
+txTestCommand           0x20000104   0x1c  Data  Lc  cc13xx_easy_link_tx.o [1]
+uDMAErrIntHandler       0x00001689    0x2  Code  Wk  startup_iar.o [1]
+uDMAIntHandler          0x00001689    0x2  Code  Wk  startup_iar.o [1]
+writeRfRegCommand       0x20000168    0x8  Data  Lc  cc13xx_easy_link_tx.o [1]
+zigbeeMcePatchAdd       0x00001698   0x14  Data  Lc  cc13xx_easy_link_tx.o [1]
+zigbeeMcePatchDat       0x000015c4   0x24  Data  Lc  cc13xx_easy_link_tx.o [1]
+
+
+[1] = C:\Users\Lucho\Documents\EE3_Bachelor Project\Datasheets\TI CC26xx\TI_CC13-26XX\TI_CC13-26XX\CC13xx\Software\cc13xx_easy_link_rev_1_0\ide\cc13xx_easy_link_training\Iar\TX\Obj
+[2] = command line
+[3] = dl7M_tln.a
+[4] = rt7M_tl.a
+[5] = shb_l.a
+
+  4 324 bytes of readonly  code memory
+  1 796 bytes of readonly  data memory
+  2 417 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
